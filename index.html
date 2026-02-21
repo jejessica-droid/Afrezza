@@ -6,24 +6,28 @@
 <title>Afrezza</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1117;
-    --surface: #181c27;
-    --surface2: #1e2333;
-    --border: rgba(255,255,255,0.07);
-    --blue: #4a9eff;
-    --blue-dim: rgba(74,158,255,0.12);
-    --blue-glow: rgba(74,158,255,0.3);
-    --green: #3ecf8e;
-    --green-dim: rgba(62,207,142,0.12);
-    --green-glow: rgba(62,207,142,0.3);
-    --text: #e8ecf4;
-    --muted: #6b7280;
-    --muted2: #9ca3af;
-    --serif: 'DM Serif Display', Georgia, serif;
-    --mono: 'DM Mono', 'Courier New', monospace;
+    --bg: #f5f2ee;
+    --surface: #ffffff;
+    --surface2: #faf8f5;
+    --border: rgba(0,0,0,0.08);
+    --blue: #2171c7;
+    --blue-light: #e8f1fb;
+    --blue-mid: #bdd5f5;
+    --blue-tile: #ddeaff;
+    --green: #1a8a5a;
+    --green-light: #e4f4ec;
+    --green-mid: #a8dfc3;
+    --green-tile: #d4f0e4;
+    --text: #1a1a1a;
+    --muted: #8a8580;
+    --muted2: #6b6560;
+    --serif: 'Lora', Georgia, serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 20px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,22 +40,7 @@
     overflow-x: hidden;
   }
 
-  /* Subtle grid texture */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
   .app {
-    position: relative;
-    z-index: 1;
     max-width: 420px;
     margin: 0 auto;
     min-height: 100vh;
@@ -59,9 +48,8 @@
     flex-direction: column;
   }
 
-  /* Header */
   .header {
-    padding: 52px 24px 24px;
+    padding: 52px 24px 20px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -70,24 +58,25 @@
   .header-left h1 {
     font-family: var(--serif);
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1;
+    color: var(--text);
   }
 
   .header-left .subtitle {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--muted);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: 6px;
+    margin-top: 5px;
   }
 
   .header-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 3px;
   }
 
   .live-time {
@@ -98,52 +87,44 @@
   }
 
   .live-date {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: var(--muted);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  /* Summary bar */
   .summary {
     margin: 0 24px;
     padding: 14px 18px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
-    gap: 24px;
+    gap: 20px;
     align-items: center;
+    box-shadow: var(--shadow);
   }
 
-  .summary-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  .summary-stat { display: flex; flex-direction: column; gap: 2px; }
 
   .summary-stat .val {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 500;
     letter-spacing: -0.03em;
     line-height: 1;
   }
 
   .summary-stat .label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--muted);
   }
 
   .summary-stat .val.blue { color: var(--blue); }
   .summary-stat .val.green { color: var(--green); }
 
-  .summary-divider {
-    width: 1px;
-    height: 32px;
-    background: var(--border);
-  }
+  .summary-divider { width: 1px; height: 28px; background: var(--border); }
 
   .total-units {
     margin-left: auto;
@@ -154,7 +135,7 @@
   }
 
   .total-units .val {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 500;
     letter-spacing: -0.03em;
     line-height: 1;
@@ -162,21 +143,21 @@
   }
 
   .total-units .label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--muted);
   }
 
-  /* Tab bar */
   .tabs {
     display: flex;
     gap: 4px;
-    margin: 20px 24px 0;
+    margin: 18px 24px 0;
     padding: 4px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
+    box-shadow: var(--shadow);
   }
 
   .tab {
@@ -187,7 +168,7 @@
     background: transparent;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
@@ -195,70 +176,57 @@
   }
 
   .tab.active {
-    background: var(--surface2);
+    background: var(--bg);
     color: var(--text);
+    box-shadow: var(--shadow);
   }
 
-  /* Views */
   .view { display: none; }
   .view.active { display: block; }
 
-  /* Dashboard tiles */
   .tiles {
-    padding: 16px 24px 100px;
+    padding: 14px 24px 110px;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
   .tile {
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 20px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    animation: tileIn 0.35s ease backwards;
+    animation: tileIn 0.3s ease backwards;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow);
   }
 
   @keyframes tileIn {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .tile.blue {
-    background: var(--blue-dim);
-    border: 1px solid rgba(74,158,255,0.2);
-  }
-
-  .tile.green {
-    background: var(--green-dim);
-    border: 1px solid rgba(62,207,142,0.2);
-  }
+  .tile.blue { background: var(--blue-tile); border: 1px solid var(--blue-mid); }
+  .tile.green { background: var(--green-tile); border: 1px solid var(--green-mid); }
 
   .tile::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    border-radius: 14px 0 0 14px;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 16px 0 0 16px;
   }
 
   .tile.blue::before { background: var(--blue); }
   .tile.green::before { background: var(--green); }
 
-  .tile-left {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .tile-left { display: flex; flex-direction: column; gap: 5px; }
 
   .tile-dose {
     font-family: var(--serif);
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -267,36 +235,27 @@
   .tile.green .tile-dose { color: var(--green); }
 
   .tile-label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--muted2);
   }
 
-  .tile-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
+  .tile-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
 
   .tile-time {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 300;
     letter-spacing: -0.03em;
     color: var(--text);
   }
 
-  .tile-ago {
-    font-size: 0.62rem;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-  }
+  .tile-ago { font-size: 0.6rem; color: var(--muted2); letter-spacing: 0.04em; }
 
   .tile-source {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--muted);
     display: flex;
     align-items: center;
@@ -304,16 +263,10 @@
     margin-top: 2px;
   }
 
-  .tile-source-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-  }
+  .tile-source-dot { width: 4px; height: 4px; border-radius: 50%; opacity: 0.6; }
+  .tile.blue .tile-source-dot { background: var(--blue); }
+  .tile.green .tile-source-dot { background: var(--green); }
 
-  .tile.blue .tile-source-dot { background: var(--blue); opacity: 0.5; }
-  .tile.green .tile-source-dot { background: var(--green); opacity: 0.5; }
-
-  /* Empty state */
   .empty {
     margin: 48px 24px;
     text-align: center;
@@ -324,39 +277,34 @@
   }
 
   .empty-icon {
-    width: 56px;
-    height: 56px;
+    width: 60px; height: 60px;
     border-radius: 50%;
     background: var(--surface);
     border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: var(--shadow);
   }
 
   .empty h3 {
     font-family: var(--serif);
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 400;
     color: var(--muted2);
   }
 
   .empty p {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--muted);
-    letter-spacing: 0.06em;
-    line-height: 1.7;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
   }
 
-  /* Timeline view */
-  .timeline {
-    padding: 16px 24px 100px;
-  }
+  .timeline { padding: 14px 24px 110px; }
 
   .timeline-item {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     position: relative;
     animation: tileIn 0.3s ease backwards;
   }
@@ -364,234 +312,142 @@
   .timeline-item:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: 11px;
-    top: 24px;
-    bottom: -16px;
+    left: 11px; top: 26px; bottom: -14px;
     width: 1px;
     background: var(--border);
   }
 
   .timeline-dot {
-    width: 24px;
-    height: 24px;
+    width: 24px; height: 24px;
     border-radius: 50%;
     flex-shrink: 0;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
+    margin-top: 12px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
   }
 
-  .timeline-dot.blue { background: var(--blue-dim); border: 1.5px solid var(--blue); }
-  .timeline-dot.green { background: var(--green-dim); border: 1.5px solid var(--green); }
+  .timeline-dot.blue { background: var(--blue-light); border: 1.5px solid var(--blue); }
+  .timeline-dot.green { background: var(--green-light); border: 1.5px solid var(--green); }
 
-  .timeline-dot-inner {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
+  .timeline-dot-inner { width: 8px; height: 8px; border-radius: 50%; }
   .timeline-dot.blue .timeline-dot-inner { background: var(--blue); }
   .timeline-dot.green .timeline-dot-inner { background: var(--green); }
 
   .timeline-content {
     flex: 1;
     padding: 10px 16px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
   }
 
-  .timeline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
+  .timeline-header { display: flex; justify-content: space-between; align-items: baseline; }
 
-  .timeline-dose {
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-
+  .timeline-dose { font-size: 0.9rem; font-weight: 500; letter-spacing: -0.01em; }
   .timeline-dot.blue ~ .timeline-content .timeline-dose { color: var(--blue); }
   .timeline-dot.green ~ .timeline-content .timeline-dose { color: var(--green); }
 
-  .timeline-time {
-    font-size: 0.75rem;
-    color: var(--muted2);
-    font-weight: 300;
-  }
+  .timeline-time { font-size: 0.72rem; color: var(--muted2); font-weight: 300; }
 
   .timeline-meta {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     color: var(--muted);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     margin-top: 4px;
   }
 
-  /* Log buttons */
   .log-bar {
     position: fixed;
-    bottom: 0;
-    left: 50%;
+    bottom: 0; left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    max-width: 420px;
-    padding: 16px 24px 36px;
-    background: linear-gradient(transparent, var(--bg) 30%);
-    display: flex;
-    gap: 10px;
+    width: 100%; max-width: 420px;
+    padding: 16px 24px 40px;
+    background: linear-gradient(transparent, var(--bg) 28%);
+    display: flex; gap: 10px;
     z-index: 100;
   }
 
   .log-btn {
     flex: 1;
     padding: 16px 12px;
-    border-radius: 14px;
+    border-radius: 16px;
     border: none;
     font-family: var(--mono);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     transition: all 0.15s;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-lg);
   }
 
   .log-btn:active { transform: scale(0.97); }
 
   .log-btn-dose {
     font-family: var(--serif);
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 1;
     letter-spacing: -0.02em;
   }
 
-  .log-btn.btn-blue {
-    background: var(--blue-dim);
-    border: 1.5px solid rgba(74,158,255,0.35);
-    color: var(--blue);
-  }
+  .log-btn.btn-blue { background: var(--blue-tile); border: 1.5px solid var(--blue-mid); color: var(--blue); }
+  .log-btn.btn-green { background: var(--green-tile); border: 1.5px solid var(--green-mid); color: var(--green); }
+  .log-btn.btn-blue:hover { background: var(--blue-light); }
+  .log-btn.btn-green:hover { background: var(--green-light); }
 
-  .log-btn.btn-green {
-    background: var(--green-dim);
-    border: 1.5px solid rgba(62,207,142,0.35);
-    color: var(--green);
-  }
-
-  .log-btn.btn-blue:hover { background: rgba(74,158,255,0.2); border-color: rgba(74,158,255,0.5); }
-  .log-btn.btn-green:hover { background: rgba(62,207,142,0.2); border-color: rgba(62,207,142,0.5); }
-
-  /* Ripple */
   .ripple {
-    position: absolute;
-    border-radius: 50%;
+    position: absolute; border-radius: 50%;
     transform: scale(0);
     animation: rippleAnim 0.5s linear;
     pointer-events: none;
   }
+  .btn-blue .ripple { background: rgba(33,113,199,0.15); }
+  .btn-green .ripple { background: rgba(26,138,90,0.15); }
+  @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
-  .btn-blue .ripple { background: rgba(74,158,255,0.3); }
-  .btn-green .ripple { background: rgba(62,207,142,0.3); }
-
-  @keyframes rippleAnim {
-    to { transform: scale(4); opacity: 0; }
-  }
-
-  /* Toast */
   .toast {
     position: fixed;
-    top: 24px;
-    left: 50%;
+    top: 24px; left: 50%;
     transform: translateX(-50%) translateY(-80px);
-    background: var(--surface2);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 10px 18px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     z-index: 200;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: var(--shadow-lg);
+    color: var(--text);
   }
 
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .toast-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-  }
-
+  .toast-dot { width: 6px; height: 6px; border-radius: 50%; }
   .toast-dot.blue { background: var(--blue); }
   .toast-dot.green { background: var(--green); }
 
-  /* NFC indicator */
-  .nfc-badge {
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    padding: 6px 0 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  .nfc-badge span { color: var(--muted); }
-
-  /* Glow pulse for most recent */
-  .tile:first-child {
-    box-shadow: 0 0 0 0 transparent;
-    animation: tileIn 0.35s ease backwards, recentGlow 3s ease 0.4s;
-  }
-
-  @keyframes recentGlow {
-    0% { box-shadow: 0 0 0 0 transparent; }
-    30% { box-shadow: 0 0 20px 2px rgba(74,158,255,0.12); }
-    100% { box-shadow: 0 0 0 0 transparent; }
-  }
-
-  .tile.green:first-child {
-    animation: tileIn 0.35s ease backwards, recentGlowGreen 3s ease 0.4s;
-  }
-
-  @keyframes recentGlowGreen {
-    0% { box-shadow: 0 0 0 0 transparent; }
-    30% { box-shadow: 0 0 20px 2px rgba(62,207,142,0.12); }
-    100% { box-shadow: 0 0 0 0 transparent; }
-  }
-
   .section-label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     color: var(--muted);
-    padding: 16px 24px 8px;
+    padding: 14px 24px 6px;
   }
 
   .no-doses-timeline {
     padding: 48px 24px;
     text-align: center;
     color: var(--muted);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
   }
 </style>
 </head>
@@ -630,7 +486,6 @@
     <button class="tab" onclick="switchTab('timeline')">Timeline</button>
   </div>
 
-  <!-- Dashboard view -->
   <div class="view active" id="view-dashboard">
     <div class="tiles" id="tileContainer">
       <div class="empty" id="emptyState">
@@ -641,7 +496,6 @@
     </div>
   </div>
 
-  <!-- Timeline view -->
   <div class="view" id="view-timeline">
     <div class="section-label">Chronological</div>
     <div class="timeline" id="timelineContainer">
@@ -650,7 +504,6 @@
   </div>
 </div>
 
-<!-- Log buttons -->
 <div class="log-bar">
   <button class="log-btn btn-blue" onclick="logDose(4, 'button', event)">
     <div class="log-btn-dose">4u</div>
@@ -668,7 +521,6 @@
 </div>
 
 <script>
-  // ── State ──────────────────────────────────────────────────────────────────
   let doses = JSON.parse(localStorage.getItem('afrezza_doses_' + todayKey()) || '[]');
 
   function todayKey() {
@@ -680,184 +532,147 @@
     localStorage.setItem('afrezza_doses_' + todayKey(), JSON.stringify(doses));
   }
 
-  // ── Clock ──────────────────────────────────────────────────────────────────
   function updateClock() {
     const now = new Date();
-    const h = now.getHours().toString().padStart(2, '0');
-    const m = now.getMinutes().toString().padStart(2, '0');
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
     document.getElementById('liveTime').textContent = `${h}:${m}`;
-    document.getElementById('liveDate').textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    document.getElementById('liveDate').textContent = now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
   }
   updateClock();
   setInterval(updateClock, 10000);
 
-  // ── Logging ────────────────────────────────────────────────────────────────
-  function logDose(units, source = 'button', event = null) {
-    const now = new Date();
-    doses.unshift({ units, time: now.toISOString(), source });
-    save();
-    render();
-    showToast(units, source);
+  function logDose(units, source='button', event=null) {
+    doses.unshift({ units, time: new Date().toISOString(), source });
+    save(); render(); showToast(units, source);
     if (event) addRipple(event.currentTarget, event);
   }
 
-  // ── Rendering ─────────────────────────────────────────────────────────────
   function formatTime(iso) {
     const d = new Date(iso);
-    const h = d.getHours();
-    const m = d.getMinutes().toString().padStart(2, '0');
-    const period = h >= 12 ? 'pm' : 'am';
-    return `${h % 12 || 12}:${m}${period}`;
+    const h = d.getHours(), m = d.getMinutes().toString().padStart(2,'0');
+    return `${h%12||12}:${m}${h>=12?'pm':'am'}`;
   }
 
   function timeAgo(iso) {
-    const diff = Math.floor((Date.now() - new Date(iso)) / 60000);
+    const diff = Math.floor((Date.now()-new Date(iso))/60000);
     if (diff < 1) return 'just now';
     if (diff < 60) return `${diff}m ago`;
-    const hrs = Math.floor(diff / 60);
-    const mins = diff % 60;
+    const hrs = Math.floor(diff/60), mins = diff%60;
     return mins ? `${hrs}h ${mins}m ago` : `${hrs}h ago`;
   }
 
   function render() {
     const container = document.getElementById('tileContainer');
-    const timelineContainer = document.getElementById('timelineContainer');
+    const tlContainer = document.getElementById('timelineContainer');
     const empty = document.getElementById('emptyState');
     const emptyTl = document.getElementById('emptyTimeline');
 
-    // Summary
-    const count4 = doses.filter(d => d.units === 4).length;
-    const count8 = doses.filter(d => d.units === 8).length;
+    const count4 = doses.filter(d=>d.units===4).length;
+    const count8 = doses.filter(d=>d.units===8).length;
     document.getElementById('count4u').textContent = count4;
     document.getElementById('count8u').textContent = count8;
-    document.getElementById('totalUnits').textContent = count4 * 4 + count8 * 8;
+    document.getElementById('totalUnits').textContent = count4*4+count8*8;
 
-    // Tiles (most recent first = doses[0])
     if (doses.length === 0) {
-      empty.style.display = 'flex';
-      emptyTl.style.display = 'block';
-      container.querySelectorAll('.tile').forEach(t => t.remove());
-      timelineContainer.querySelectorAll('.timeline-item').forEach(t => t.remove());
+      empty.style.display = 'flex'; emptyTl.style.display = 'block';
+      container.querySelectorAll('.tile').forEach(t=>t.remove());
+      tlContainer.querySelectorAll('.timeline-item').forEach(t=>t.remove());
       return;
     }
 
-    empty.style.display = 'none';
-    emptyTl.style.display = 'none';
+    empty.style.display = 'none'; emptyTl.style.display = 'none';
 
-    // Rebuild tiles
-    container.querySelectorAll('.tile').forEach(t => t.remove());
-    doses.forEach((d, i) => {
-      const cls = d.units === 4 ? 'blue' : 'green';
+    container.querySelectorAll('.tile').forEach(t=>t.remove());
+    doses.forEach((d,i) => {
+      const cls = d.units===4?'blue':'green';
       const tile = document.createElement('div');
       tile.className = `tile ${cls}`;
-      tile.style.animationDelay = `${i * 0.05}s`;
+      tile.style.animationDelay = `${i*0.05}s`;
       tile.innerHTML = `
         <div class="tile-left">
           <div class="tile-dose">${d.units}u</div>
-          <div class="tile-label">Afrezza · ${d.units === 4 ? 'Standard' : 'Double'}</div>
+          <div class="tile-label">Afrezza · ${d.units===4?'Standard':'Double'}</div>
         </div>
         <div class="tile-right">
           <div class="tile-time">${formatTime(d.time)}</div>
           <div class="tile-ago">${timeAgo(d.time)}</div>
           <div class="tile-source">
             <div class="tile-source-dot"></div>
-            ${d.source === 'nfc' ? 'NFC' : d.source === 'watch' ? '⌚ Watch' : 'Manual'}
+            ${d.source==='nfc'?'NFC':d.source==='watch'?'⌚ Watch':'Manual'}
           </div>
-        </div>
-      `;
-      tile.addEventListener('dblclick', () => deleteDose(i));
+        </div>`;
+      tile.addEventListener('dblclick', ()=>deleteDose(i));
       container.appendChild(tile);
     });
 
-    // Timeline (chronological = oldest first)
-    timelineContainer.querySelectorAll('.timeline-item').forEach(t => t.remove());
-    [...doses].reverse().forEach((d, i) => {
-      const cls = d.units === 4 ? 'blue' : 'green';
+    tlContainer.querySelectorAll('.timeline-item').forEach(t=>t.remove());
+    [...doses].reverse().forEach((d,i) => {
+      const cls = d.units===4?'blue':'green';
       const item = document.createElement('div');
       item.className = 'timeline-item';
-      item.style.animationDelay = `${i * 0.04}s`;
+      item.style.animationDelay = `${i*0.04}s`;
       item.innerHTML = `
-        <div class="timeline-dot ${cls}">
-          <div class="timeline-dot-inner"></div>
-        </div>
+        <div class="timeline-dot ${cls}"><div class="timeline-dot-inner"></div></div>
         <div class="timeline-content">
           <div class="timeline-header">
             <div class="timeline-dose">${d.units} units</div>
             <div class="timeline-time">${formatTime(d.time)}</div>
           </div>
-          <div class="timeline-meta">${d.source === 'nfc' ? '◈ NFC tag' : d.source === 'watch' ? '⌚ Apple Watch' : '▸ Manual entry'} · ${timeAgo(d.time)}</div>
-        </div>
-      `;
-      timelineContainer.appendChild(item);
+          <div class="timeline-meta">${d.source==='nfc'?'◈ NFC tag':d.source==='watch'?'⌚ Apple Watch':'▸ Manual'} · ${timeAgo(d.time)}</div>
+        </div>`;
+      tlContainer.appendChild(item);
     });
   }
 
   function deleteDose(index) {
     if (confirm(`Remove ${doses[index].units}u dose at ${formatTime(doses[index].time)}?`)) {
-      doses.splice(index, 1);
-      save();
-      render();
+      doses.splice(index,1); save(); render();
     }
   }
 
-  // Refresh "ago" labels every minute
   setInterval(render, 60000);
 
-  // ── Tabs ───────────────────────────────────────────────────────────────────
   function switchTab(name) {
-    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', (i === 0) === (name === 'dashboard')));
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0)===(name==='dashboard')));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
     document.getElementById(`view-${name}`).classList.add('active');
   }
 
-  // ── Toast ──────────────────────────────────────────────────────────────────
   let toastTimer;
   function showToast(units, source) {
-    const toast = document.getElementById('toast');
-    const dot = document.getElementById('toastDot');
-    const msg = document.getElementById('toastMsg');
+    const toast=document.getElementById('toast'), dot=document.getElementById('toastDot'), msg=document.getElementById('toastMsg');
     clearTimeout(toastTimer);
-    dot.className = `toast-dot ${units === 4 ? 'blue' : 'green'}`;
-    const src = source === 'nfc' ? ' via NFC' : source === 'watch' ? ' via Watch' : '';
-    msg.textContent = `${units}u logged${src}`;
+    dot.className=`toast-dot ${units===4?'blue':'green'}`;
+    msg.textContent=`${units}u logged${source==='nfc'?' via NFC':source==='watch'?' via Watch':''}`;
     toast.classList.add('show');
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),2500);
   }
 
-  // ── Ripple ─────────────────────────────────────────────────────────────────
   function addRipple(btn, e) {
-    const r = document.createElement('span');
-    const rect = btn.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    r.className = 'ripple';
-    r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
-    btn.appendChild(r);
-    setTimeout(() => r.remove(), 600);
+    const r=document.createElement('span'), rect=btn.getBoundingClientRect(), size=Math.max(rect.width,rect.height);
+    r.className='ripple';
+    r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    btn.appendChild(r); setTimeout(()=>r.remove(),600);
   }
 
-  // ── NFC (Web NFC API — requires HTTPS + Chrome Android) ───────────────────
-  // This simulates the NFC handler. On Android Chrome, this works natively.
-  // For iOS, use the Shortcuts app + NFC tag → URL scheme or local API call.
   if ('NDEFReader' in window) {
     const reader = new NDEFReader();
-    reader.scan().then(() => {
-      reader.onreading = ({ message }) => {
+    reader.scan().then(()=>{
+      reader.onreading=({message})=>{
         for (const record of message.records) {
-          const text = new TextDecoder().decode(record.data);
-          if (text === '4u') logDose(4, 'nfc');
-          if (text === '8u') logDose(8, 'nfc');
+          const text=new TextDecoder().decode(record.data);
+          if (text==='4u') logDose(4,'nfc');
+          if (text==='8u') logDose(8,'nfc');
         }
       };
-    }).catch(() => {});
+    }).catch(()=>{});
   }
 
-  // URL-based logging (for NFC tags with URLs & Apple Shortcuts)
-  // Example: yourapp.com/?log=4 or yourapp.com/?log=8
   const params = new URLSearchParams(location.search);
-  if (params.get('log') === '4') { logDose(4, 'nfc'); history.replaceState({}, '', location.pathname); }
-  if (params.get('log') === '8') { logDose(8, 'nfc'); history.replaceState({}, '', location.pathname); }
+  if (params.get('log')==='4') { logDose(4,'nfc'); history.replaceState({},'',location.pathname); }
+  if (params.get('log')==='8') { logDose(8,'nfc'); history.replaceState({},'',location.pathname); }
 
-  // ── Init ───────────────────────────────────────────────────────────────────
   render();
 </script>
 </body>
